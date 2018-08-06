@@ -1,8 +1,12 @@
 <h2>Welcome {{currentUser.username}}</h2>
+<div>Your UID is {{currentUser._id}}</div>
+<div>Email Address: {{currentUser.emailAddress}}</div>
+<div>Phone Number{{currentUser.phoneNumber}}</div>
+<button (click)="logout" class="btn btn-danger">Log out</button>
 
 <h3>Enrollments</h3>
 <ul class="list-group">
-  <li class="list-group-item" *ngFor="let section of currentUser.sections">
+  <li class="list-group-item" *ngFor="let section of currentUser.section">
     {{section.title}} (seats: 23)
     <button class="float-right">Drop</button>
   </li>

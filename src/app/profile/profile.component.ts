@@ -9,9 +9,20 @@ import {current} from 'codelyzer/util/syntaxKind';
 })
 export class ProfileComponent implements OnInit {
 
-  currentUser = {};
+  currentUser = {
+    _id: {},
+    username: '',
+    password: '',
+    emailAddress: '',
+    phoneNumber: '',
+    section: [],
+  };
 
   constructor(private userService: UserServiceClient) { }
+
+  logout() {
+
+  }
 
   ngOnInit() {
     this.userService.currentUser()

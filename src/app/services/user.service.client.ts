@@ -13,6 +13,12 @@ export class UserServiceClient {
       body: JSON.stringify(user)
     })
 
+  logout() {
+    fetch('http://localhost:3000/logout', {
+      credentials: 'include'
+    });
+  }
+
   register = (user) =>
     fetch('http://localhost:3000/user', {
       method: 'post',
