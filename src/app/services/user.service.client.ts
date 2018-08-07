@@ -14,6 +14,7 @@ export class UserServiceClient {
     })
 
   logout() {
+    console.log('LOG_OUT');
     fetch('http://localhost:3000/logout', {
       credentials: 'include'
     });

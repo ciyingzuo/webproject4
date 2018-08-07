@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 
@@ -9,8 +9,12 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
+  username: String;
+  password: String;
+
   constructor(private router: Router,
-              private userService: UserServiceClient) { }
+              private userService: UserServiceClient) {
+  }
 
   register = (username, password) => {
     const user = {
@@ -18,7 +22,7 @@ export class RegisterComponent implements OnInit {
       password: password
     };
     this.userService.register(user)
-      .then(newUser => console.log(newUser));
+      .then(u => this.router.navigate(['profile']));
   };
 
   ngOnInit() {

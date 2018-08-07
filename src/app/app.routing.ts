@@ -7,7 +7,7 @@ import {SectionsComponent} from './sections/sections.component';
 import {EnrollmentComponent} from './enrollment/enrollment.component';
 
 const appRoutes: Routes = [
-  { path: 'enrollments', component: EnrollmentComponent },
+  { path: 'enrollment/:courseId', component: EnrollmentComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

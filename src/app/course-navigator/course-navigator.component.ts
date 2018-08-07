@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {CourseServiceClient} from "../services/course.service.client";
+import {Component, OnInit} from '@angular/core';
+import {CourseServiceClient} from '../services/course.service.client';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-course-navigator',
@@ -9,17 +10,31 @@ import {CourseServiceClient} from "../services/course.service.client";
 export class CourseNavigatorComponent implements OnInit {
 
   courses = [];
-  selectedCourse = {};
-  selectedModule = {};
+  currentCourse = {};
+  currentModule = {};
+  currentLesson = {};
 
-  constructor(private courseService: CourseServiceClient) { }
+  constructor(private router: Router,
+              private courseService: CourseServiceClient) {
+  }
 
   selectCourse(course) {
-    this.selectedCourse = course;
-    this.selectedModule = {};
+    this.currentCourse = course;
+    this.currentModule = {};
+    this.currentLesson = {};
   }
+
   selectModule(module) {
-    this.selectedModule = module;
+    this.currentModule = module;
+    this.currentLesson = {};
+  }
+
+  selectLesson(lesson) {
+    this.currentLesson = lesson;
+  }
+
+  enrollPage(courseId) {
+    this.router.navigate(['enrollment/' + courseId]);
   }
 
   ngOnInit() {

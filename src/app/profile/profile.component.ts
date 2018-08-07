@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
-import {current} from 'codelyzer/util/syntaxKind';
+import {Router} from '@angular/router';
+import {SectionServiceClient} from '../services/section.service.client';
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +19,24 @@ export class ProfileComponent implements OnInit {
     section: [],
   };
 
-  constructor(private userService: UserServiceClient) { }
+  constructor(private sectionService: SectionServiceClient,
+              private router: Router,
+              private userService: UserServiceClient) {
+  }
 
   logout() {
+    this.userService.logout();
+    this.router.navigate(['login']);
+  }
 
+  adminPage() {
+    if (this.currentUser.username === 'admin') {
+      this.router.navigate(['admin']);
+    }
+  }
+
+  drop(sectionId) {
+    this.sectionService.drop(sectionId);
   }
 
   ngOnInit() {

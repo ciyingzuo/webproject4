@@ -27,7 +27,9 @@
                class="form-control">
       </li>
       <li *ngFor="let section of sections" class="list-group-item">
-        {{section.title}}
+        <input [(ngModel)]="section.title">
+        <input [(ngModel)]="section.seat">
+        <button (click)="updateSection(section)">Update</button>
       </li>
     </ul>
   </div>
