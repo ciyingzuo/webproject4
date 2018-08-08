@@ -22,10 +22,6 @@ export class RegisterComponent implements OnInit {
       alert('Password doesn\'t match');
       return;
     }
-    if (username === 'admin') {
-      alert('Bad username!');
-      return;
-    }
 
     this.userService.queryUser(username).then(status => {
         if (status === 400) {

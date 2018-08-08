@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 
 const LOCAL = 'http://localhost:3000/';
-const HEROKU = 'https://ciyingzuo-webdev-hw1.herokuapp.com/api/course';
+const HEROKU = 'https://ciyingzuo-webdev-hw4server.herokuapp.com/';
+const USER_URL = HEROKU;
 
 @Injectable()
 export class UserServiceClient {
   login = (user) =>
-    fetch(LOCAL + 'login', {
+    fetch(USER_URL + 'login', {
       method: 'POST',
       credentials: 'include',
       headers: {
@@ -16,13 +17,13 @@ export class UserServiceClient {
     }).then(response => response.json());
 
   logout() {
-    fetch(LOCAL + 'logout', {
+    fetch(USER_URL + 'logout', {
       credentials: 'include'
     });
   }
 
   register = (user) =>
-    fetch(LOCAL + 'user', {
+    fetch(USER_URL + 'user', {
       method: 'post',
       credentials: 'include',
       headers: {
@@ -32,7 +33,7 @@ export class UserServiceClient {
     });
 
   deleteUser = (user) =>
-    fetch(LOCAL + 'user', {
+    fetch(USER_URL + 'user', {
       method: 'delete',
       credentials: 'include',
       headers: {
@@ -42,7 +43,7 @@ export class UserServiceClient {
     });
 
   updateUser = (user) =>
-    fetch(LOCAL + 'user', {
+    fetch(USER_URL + 'user', {
       method: 'put',
       credentials: 'include',
       headers: {
@@ -52,12 +53,12 @@ export class UserServiceClient {
     });
 
   currentUser = () =>
-    fetch(LOCAL + 'currentUser', {
+    fetch(USER_URL + 'currentUser', {
       credentials: 'include'
     }).then(response => response.json());
 
   queryUser = (username) =>
-    fetch(LOCAL + 'user/exist/' + username, {
+    fetch(USER_URL + 'user/exist/' + username, {
       credentials: 'include'
     }).then(response => response.status);
 }
