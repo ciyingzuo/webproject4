@@ -1,41 +1,46 @@
 import {Injectable} from '@angular/core';
 
+const LOCAL = 'http://localhost:3000/api/';
+const HEROKU = 'https://ciyingzuo-webdev-hw1.herokuapp.com/api/course';
+
 @Injectable()
 export class SectionServiceClient {
 
-  enroll = (sectionId, userId) =>
-    fetch('http://localhost:3000/api/student/' + userId + '/section/' + sectionId, {
+  enroll = (section, userId) =>
+    fetch(LOCAL + 'student/' + userId + '/section/' + section._id, {
       method: 'post',
-      credentials: 'include'
+      credentials: 'include',
+      body: JSON.stringify(section)
     }).then(response => response.status);
 
-  drop = (sectionId, userId) =>
-    fetch('http://localhost:3000/api/student/' + userId + '/section/' + sectionId, {
+  drop = (section, userId) =>
+    fetch(LOCAL + 'student/' + userId + '/section/' + section._id, {
       method: 'delete',
       headers: {
         'content-type': 'application/json'
       },
       credentials: 'include',
+      body: JSON.stringify(section)
     });
 
   findAllSections = () =>
-    fetch('http://localhost:3000/api/section')
+    fetch(LOCAL + 'section')
       .then(response => response.json());
 
   findSectionForUser = (userId) =>
-    fetch('http://localhost:3000/api/student/' + userId + '/section')
+    fetch(LOCAL + 'student/' + userId + '/section')
       .then(response => response.json());
 
   findSection = (sectionId) =>
-    fetch('http://localhost:3000/api/section/' + sectionId)
+    fetch(LOCAL + 'section/' + sectionId)
       .then(response => response.json());
 
   findSectionsForCourse = courseId =>
-    fetch('http://localhost:3000/api/course/' + courseId + '/section')
+    fetch(LOCAL + 'course/' + courseId + '/section')
       .then(response => response.json());
 
   deleteSection = (section) =>
-    fetch('http://localhost:3000/api/section/' + section._id, {
+    fetch(LOCAL + 'section/' + section._id, {
       method: 'delete',
       headers: {
         'content-type': 'application/json'
@@ -45,7 +50,7 @@ export class SectionServiceClient {
     });
 
   updateSection = (section) =>
-    fetch('http://localhost:3000/api/section/' + section._id, {
+    fetch(LOCAL + 'section/' + section._id, {
       method: 'put',
       headers: {
         'content-type': 'application/json'
@@ -56,7 +61,7 @@ export class SectionServiceClient {
     });
 
   createSection = section =>
-    fetch('http://localhost:3000/api/course/:courseId/section', {
+    fetch(LOCAL + 'course/:courseId/section', {
       method: 'post',
       headers: {
         'content-type': 'application/json'

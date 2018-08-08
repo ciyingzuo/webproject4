@@ -32,6 +32,7 @@ export class ProfileComponent implements OnInit {
   coursePage() {
     this.router.navigate(['courses']);
   }
+
   adminPage() {
     if (this.currentUser.username === 'admin') {
       this.router.navigate(['admin']);
@@ -45,8 +46,9 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUser(this.currentUser);
   }
 
-  drop(sectionId) {
-    this.sectionService.drop(sectionId, this.currentUser._id).then(response => {
+  drop(section) {
+    section.seat = section.seat + 1;
+    this.sectionService.drop(section, this.currentUser._id).then(response => {
       this.sectionService.findSectionForUser(this.currentUser._id).then(section =>
         this.sections = section);
     });

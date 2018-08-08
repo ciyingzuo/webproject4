@@ -20,6 +20,6 @@
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let enrollment of sections">
     {{enrollment.section.title}}
-    <button class="float-right btn btn-warning" (click)="drop(enrollment.section._id)">Drop Now!!!</button>
+    <button class="float-right btn btn-warning" (click)="drop(enrollment.section)">Drop Now!!!</button>
   </li>
 </ul>

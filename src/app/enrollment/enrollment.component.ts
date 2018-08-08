@@ -22,16 +22,22 @@ export class EnrollmentComponent implements OnInit {
               private userService: UserServiceClient) {
   }
 
-  enroll = sectionId => {
+  enroll = section => {
+    if (section.seat == 0) {
+      alert('Section full');
+      return;
+    } else {
+      section.seat = section.seat - 1;
+    }
     this.sectionService
-      .enroll(sectionId, this.currentUser._id).then((status) => {
+      .enroll(section, this.currentUser._id).then((status) => {
       if (status === 200) {
         alert('enroll success');
       } else {
         alert('enroll failed');
       }
     });
-  };
+  }
 
   profilePage() {
     this.router.navigate(['profile']);
