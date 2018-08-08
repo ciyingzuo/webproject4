@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {SectionServiceClient} from '../services/section.service.client';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserServiceClient} from '../services/user.service.client';
 import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-enrollment',
@@ -16,6 +17,7 @@ export class EnrollmentComponent implements OnInit {
   sections = [];
 
   constructor(private route: ActivatedRoute,
+              private router: Router,
               private sectionService: SectionServiceClient,
               private userService: UserServiceClient) {
   }
@@ -30,6 +32,10 @@ export class EnrollmentComponent implements OnInit {
       }
     });
   };
+
+  profilePage() {
+    this.router.navigate(['profile']);
+  }
 
 
   ngOnInit() {

@@ -3,7 +3,10 @@
        class="form-control" placeholder="Username"/>
 <input [(ngModel)]="password"
        class="form-control" placeholder="Password"/>
-<button (click)="register(username, password)"
+<input [(ngModel)]="password2"
+       class="form-control" placeholder="Re-enter Password"/>
+<button (click)="preregister(username, password, password2)"
         class="btn btn-primary btn-block">
   Login
 </button>
+<button (click)="loginPage()" class="btn btn-primary">Login</button>

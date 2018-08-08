@@ -10,7 +10,7 @@ export class UserServiceClient {
         'content-type': 'application/json'
       },
       body: JSON.stringify(user)
-    });
+    }).then(response => response.json());
 
   logout() {
     console.log('LOG_OUT');
@@ -53,4 +53,9 @@ export class UserServiceClient {
     fetch('http://localhost:3000/currentUser', {
       credentials: 'include'
     }).then(response => response.json());
+
+  queryUser = (username) =>
+    fetch('http://localhost:3000/user/exist/' + username, {
+      credentials: 'include'
+    }).then(response => response.status);
 }

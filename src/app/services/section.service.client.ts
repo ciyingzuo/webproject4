@@ -16,7 +16,6 @@ export class SectionServiceClient {
         'content-type': 'application/json'
       },
       credentials: 'include',
-      // body: JSON.stringify(section)
     });
 
   findAllSections = () =>

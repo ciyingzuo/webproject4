@@ -1,18 +1,19 @@
 <div class="row">
   <div class="col-4">
-    <h2>Courses</h2>
+    <h2>Course</h2>
+    <button (click)="profilePage()" class="btn btn-primary">Back to Profile</button>
     <ul class="list-group">
       <li (click)="selectCourse(course)"
           [ngClass]="{'active': course.id == currentCourse.id}"
           *ngFor="let course of courses"
           class="list-group-item">
         {{course.title}}
-        <button (click)="enrollPage(course.id)">Enroll Now!!!</button>
+        <button class="float-right btn btn-success" (click)="enrollPage(course.id)">Enroll</button>
       </li>
     </ul>
   </div>
   <div class="col-4">
-    <h2>Modules</h2>
+    <h2>Module</h2>
     <ul class="list-group">
       <li (click)="selectModule(module)"
           *ngFor="let module of currentCourse.module"
@@ -23,14 +24,35 @@
     </ul>
   </div>
   <div class="col-4">
-    <h2>Lessons</h2>
+    <h2>Lesson</h2>
     <ul class="list-group">
       <li (click)="selectLesson(lesson)"
-        *ngFor="let lesson of currentModule.lesson"
+          *ngFor="let lesson of currentModule.lesson"
           [ngClass]="{'active': lesson.id == currentLesson.id}"
           class="list-group-item">
         {{lesson.title}}
       </li>
     </ul>
   </div>
+
+
+  <div class="form-control">
+    <h2>Widget</h2>
+    <ul class="list-group">
+      <li *ngFor="let widget of topic.widget"
+          class="list-group-item">
+        <div [ngSwitch]="widget.type">
+          <h2 *ngSwitchCase="'HEADING'">{{widget.text}}</h2>
+          <div *ngSwitchCase="'PARAGRAPH'">{{widget.text}}</div>
+          <img *ngSwitchCase="'IMAGE'" src={{widget.src}} alt={{widget.text}}/>
+          <ng-container *ngSwitchCase="'LIST'">
+      <li *ngFor="let item of widget.text.split('\n')">{{item}}</li>
+      </ng-container>
+      <div *ngSwitchDefault>{{widget.type}}</div>
+  </div>
+  </li>
+  </ul>
+</div>
+
+
 </div>

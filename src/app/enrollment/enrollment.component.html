@@ -1,8 +1,8 @@
 <h2>Enrollments</h2>
-
+<button (click)="profilePage()" class="btn btn-primary">Back to Profile</button>
 <ul class="list-group">
   <li *ngFor="let section of sections" class="list-group-item">
     {{section.title}} (seat remaining: {{section.seat}})
-    <button class="float-right" (click)="enroll(section._id)">Enroll</button>
+    <button class="float-right btn btn-success" (click)="enroll(section._id)">Enroll</button>
   </li>
 </ul>

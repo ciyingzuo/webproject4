@@ -12,7 +12,8 @@ export class CourseNavigatorComponent implements OnInit {
   courses = [];
   currentCourse = {};
   currentModule = {};
-  currentLesson = {};
+  currentLesson = {topic: []};
+  topic = {};
 
   constructor(private router: Router,
               private courseService: CourseServiceClient) {
@@ -21,16 +22,28 @@ export class CourseNavigatorComponent implements OnInit {
   selectCourse(course) {
     this.currentCourse = course;
     this.currentModule = {};
-    this.currentLesson = {};
+    this.currentLesson = {topic: []};
+    this.topic = {};
   }
 
   selectModule(module) {
     this.currentModule = module;
-    this.currentLesson = {};
+    this.currentLesson = {topic: []};
+    this.topic = {};
   }
 
   selectLesson(lesson) {
     this.currentLesson = lesson;
+    if (this.currentLesson.topic.length > 1) {
+      this.topic = this.currentLesson.topic[1];
+    } else {
+      this.topic = {};
+    }
+
+  }
+
+  profilePage() {
+    this.router.navigate(['profile']);
   }
 
   enrollPage(courseId) {

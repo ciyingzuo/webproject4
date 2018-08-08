@@ -11,9 +11,34 @@ export class RegisterComponent implements OnInit {
 
   username: String;
   password: String;
+  password2: String;
 
   constructor(private router: Router,
               private userService: UserServiceClient) {
+  }
+
+  preregister = (username, password, password2) => {
+    if (password !== password2) {
+      alert('Password doesn\'t match');
+      return;
+    }
+    if (username === 'admin') {
+      alert('Bad username!');
+      return;
+    }
+
+    this.userService.queryUser(username).then(status => {
+        if (status === 400) {
+          alert('Username already exist');
+          return;
+        } else {
+          this.register(username, password);
+        }
+    });
+  }
+
+  loginPage() {
+    this.router.navigate(['login']);
   }
 
   register = (username, password) => {
@@ -23,7 +48,7 @@ export class RegisterComponent implements OnInit {
     };
     this.userService.register(user)
       .then(u => this.router.navigate(['profile']));
-  };
+  }
 
   ngOnInit() {
   }

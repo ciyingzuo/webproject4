@@ -3,19 +3,23 @@
 <div>Email Address:
   <input [(ngModel)]="currentUser.emailAddress"
          class="form-control"/>
+  Phone Number:
   <input [(ngModel)]="currentUser.phoneNumber"
          class="form-control"/>
-  <button (click)="updateUser(currentUser.emailAddress, currentUser.phoneNumber)" class="btn btn-danger">Update</button>
+
+  <button (click)="updateUser(currentUser.emailAddress, currentUser.phoneNumber)" class="btn btn-success">Update</button>
+  <button (click)="coursePage()" class="btn btn-primary">Course</button>
+  <button (click)="logout()" class="btn btn-danger">Log out</button>
+  <a (click)="adminPage()" [ngClass]="{'disabled': currentUser.username != 'admin'}"
+     class="btn btn-info float-right"
+     tabindex="-1" role="button" aria-disabled="true">Admin Page</a>
 </div>
-<a (click)="adminPage()" [ngClass]="{'disabled': currentUser.username != 'admin'}"
-   class="btn btn-secondary btn-lg"
-   tabindex="-1" role="button" aria-disabled="true">Admin Page</a>
-<button (click)="logout()" class="btn btn-danger">Log out</button>
+
 
 <h3>Enrollments</h3>
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let enrollment of sections">
     {{enrollment.section.title}}
-    <button class="float-right" (click)="drop(enrollment.section._id)">Drop Now!!!</button>
+    <button class="float-right btn btn-warning" (click)="drop(enrollment.section._id)">Drop Now!!!</button>
   </li>
 </ul>

@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 import {SectionServiceClient} from '../services/section.service.client';
-import {p} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-profile',
@@ -30,6 +29,9 @@ export class ProfileComponent implements OnInit {
     this.router.navigate(['login']);
   }
 
+  coursePage() {
+    this.router.navigate(['courses']);
+  }
   adminPage() {
     if (this.currentUser.username === 'admin') {
       this.router.navigate(['admin']);
@@ -62,7 +64,6 @@ export class ProfileComponent implements OnInit {
         this.sectionService.findSectionForUser(user._id)
           .then(section => {
               this.sections = section;
-              console.log(this.sections);
             }
           )
       );
