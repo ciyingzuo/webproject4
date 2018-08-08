@@ -12,6 +12,7 @@ export class SectionsComponent implements OnInit {
   courses = [];
   sections = [];
   selectedCourse = {
+    title: '',
     id: -1
   };
   section = {};
@@ -37,8 +38,18 @@ export class SectionsComponent implements OnInit {
       .then(sections => this.sections = sections);
   };
 
+  deleteSection = section => {
+    this.sectionService.deleteSection(section).then(newSection => {
+      return this.sectionService
+        .findSectionsForCourse(this.selectedCourse.id);
+    })
+      .then(sections => this.sections = sections);
+  }
 
   addSection = section => {
+    if (section.title === undefined) {
+      section.title = 'Course ' + this.selectedCourse.title + ' Section ' + (this.sections.length + 1);
+    }
     section.courseId = this.selectedCourse.id;
     section.seat = 0;
     this.sectionService
@@ -48,6 +59,7 @@ export class SectionsComponent implements OnInit {
           .findSectionsForCourse(this.selectedCourse.id);
       })
       .then(sections => this.sections = sections);
+    section.title = undefined;
   };
 
   ngOnInit() {

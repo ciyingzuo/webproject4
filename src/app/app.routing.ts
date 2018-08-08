@@ -12,7 +12,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'courses', component: CourseNavigatorComponent },
-  { path: 'sections', component: SectionsComponent }
+  { path: 'admin', component: SectionsComponent }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

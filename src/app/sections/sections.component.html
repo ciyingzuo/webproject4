@@ -1,4 +1,4 @@
-<h2>Sections</h2>
+<h2>Admin Page</h2>
 
 <div class="row">
   <div class="col-6">
@@ -23,13 +23,14 @@
                 class="btn btn-success btn-sm float-right">Add</button>
       </li>
       <li class="list-group-item">
-        <input [(ngModel)]="section.title"
+        <input (ngModel)="section.title"
                class="form-control">
       </li>
       <li *ngFor="let section of sections" class="list-group-item">
         <input [(ngModel)]="section.title">
         <input [(ngModel)]="section.seat">
         <button (click)="updateSection(section)">Update</button>
+        <button (click)="deleteSection(section)">Delete</button>
       </li>
     </ul>
   </div>

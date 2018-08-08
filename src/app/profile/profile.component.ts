@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {UserServiceClient} from '../services/user.service.client';
 import {Router} from '@angular/router';
 import {SectionServiceClient} from '../services/section.service.client';
+import {p} from '@angular/core/src/render3';
 
 @Component({
   selector: 'app-profile',
@@ -11,13 +12,13 @@ import {SectionServiceClient} from '../services/section.service.client';
 export class ProfileComponent implements OnInit {
 
   currentUser = {
-    _id: {},
+    _id: '',
     username: '',
     password: '',
     emailAddress: '',
     phoneNumber: '',
-    section: [],
   };
+  sections = [];
 
   constructor(private sectionService: SectionServiceClient,
               private router: Router,
@@ -35,8 +36,19 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  updateUser(email, phone) {
+    this.currentUser.emailAddress = email;
+    this.currentUser.phoneNumber = phone;
+    console.log(this.currentUser);
+    this.userService.updateUser(this.currentUser);
+  }
+
   drop(sectionId) {
-    this.sectionService.drop(sectionId);
+    this.sectionService.drop(sectionId, this.currentUser._id).then(response => {
+      this.sectionService.findSectionForUser(this.currentUser._id).then(section =>
+        this.sections = section);
+    });
+
   }
 
   ngOnInit() {
@@ -44,6 +56,18 @@ export class ProfileComponent implements OnInit {
       .then(user =>
         this.currentUser = user
       );
+
+    this.userService.currentUser()
+      .then(user =>
+        this.sectionService.findSectionForUser(user._id)
+          .then(section => {
+              this.sections = section;
+              console.log(this.sections);
+            }
+          )
+      );
+
+
   }
 
 }

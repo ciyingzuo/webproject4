@@ -1,4 +1,3 @@
-
 import {Injectable} from '@angular/core';
 
 @Injectable()
@@ -11,7 +10,7 @@ export class UserServiceClient {
         'content-type': 'application/json'
       },
       body: JSON.stringify(user)
-    })
+    });
 
   logout() {
     console.log('LOG_OUT');
@@ -28,10 +27,30 @@ export class UserServiceClient {
         'content-type': 'application/json'
       },
       body: JSON.stringify(user)
-    })
+    });
+
+  deleteUser = (user) =>
+    fetch('http://localhost:3000/user', {
+      method: 'delete',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
+
+  updateUser = (user) =>
+    fetch('http://localhost:3000/user', {
+      method: 'put',
+      credentials: 'include',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    });
 
   currentUser = () =>
     fetch('http://localhost:3000/currentUser', {
       credentials: 'include'
-    }).then(response => response.json())
+    }).then(response => response.json());
 }
