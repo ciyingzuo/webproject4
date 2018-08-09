@@ -17,6 +17,7 @@ export class CourseNavigatorComponent implements OnInit {
   currentLesson = {topic: []};
   topic = {};
   sections = [];
+  crs = [];
 
   constructor(private router: Router,
               private sectionService: SectionServiceClient,
@@ -25,7 +26,10 @@ export class CourseNavigatorComponent implements OnInit {
   }
 
   selectCourse(course) {
-    console.log(this.courses)
+    if (course.visibility == 'false') {
+      alert('Private content');
+      return;
+    }
     this.currentCourse = course;
     this.currentModule = {};
     this.currentLesson = {topic: []};
@@ -57,47 +61,43 @@ export class CourseNavigatorComponent implements OnInit {
   }
 
   ngOnInit() {
-    let crs = [];
     this.courseService
       .findAllCourses()
       .then(courses => {
-        this.courses = courses;
-        crs = courses;
-      });
+        // this.test(crs)
+        // this.courses = courses;
+        // crs = courses;
+        this.userService.currentUser()
+          .then(user =>
+              this.sectionService.findSectionForUser(user._id)
+                .then(sections => {
+                    for (let c of courses) {
+                      if (sections.length == 0) {
+                        if (c.visibility == 'PRIVATE') {
+                          c.visibility = 'false';
+                        }
+                      } else {
+                        for (let section of sections) {
+                          if (section.section.courseId != c.id && c.visibility == 'PRIVATE') {
+                            c.visibility = 'false';
+                          }
+                        }
+                      }
+                    }
+                    this.courses = courses;
 
-
-    this.userService.currentUser()
-      .then(user =>
-          this.sectionService.findSectionForUser(user._id)
-            .then(sections => {
-                for (let c of crs) {
-                  console.log("pr");
+                  }
+                )
+            , err => {
+              for (let c of courses) {
+                if (c.visibility == 'PRIVATE') {
                   c.visibility = 'false';
                 }
-
-                for (let c of crs) {
-                  for (let section of sections) {
-                    if (section.section.course == c.id || c.visibility == 'PUBLIC') {
-                      c.visibility = 'true';
-                    }
-                  }
-                }
-
-                this.courses = crs;
               }
-            )
-        , err => {
-          for (let c of crs) {
-            if (c.visibility == 'PUBLIC') {
-              c.visibility = 'true';
-            } else {
-              c.visibility = 'false';
-            }
-          }
-          this.courses = crs;
-        });
+              this.courses = courses;
+            });
+      });
 
-    // {'active': course.id == currentCourse.id}
   }
 
 }
