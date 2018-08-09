@@ -16,7 +16,9 @@
 
     "lint": "ng lint",
 
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+
+    "postinstall": "ng build --aot --prod"
 
   },
 
@@ -52,7 +54,15 @@
 
   },
 
+  "engines": {
+    "node": "8.11.3",
+    "npm": "5.6.0"
+  },
+
+
   "devDependencies": {
+    "express": "^4.16.3",
+    "typescript": "~2.7.2",
 
     "@angular-devkit/build-angular": "~0.7.0",
 
