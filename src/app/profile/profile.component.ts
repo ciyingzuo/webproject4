@@ -13,6 +13,8 @@ export class ProfileComponent implements OnInit {
   currentUser = {
     _id: '',
     username: '',
+    firstName: '',
+    lastName: '',
     password: '',
     emailAddress: '',
     phoneNumber: '',
@@ -39,10 +41,12 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  updateUser(email, phone) {
+  updateUser(email, phone, password, firstName, lastName) {
     this.currentUser.emailAddress = email;
     this.currentUser.phoneNumber = phone;
-    console.log(this.currentUser);
+    this.currentUser.password = password;
+    this.currentUser.firstName = firstName;
+    this.currentUser.lastName = lastName;
     this.userService.updateUser(this.currentUser);
   }
 
