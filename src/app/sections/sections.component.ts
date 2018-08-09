@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CourseServiceClient} from '../services/course.service.client';
 import {SectionServiceClient} from '../services/section.service.client';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-sections',
@@ -19,8 +20,14 @@ export class SectionsComponent implements OnInit {
   seat;
   title;
 
-  constructor(private sectionService: SectionServiceClient,
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private sectionService: SectionServiceClient,
               private courseService: CourseServiceClient) {
+  }
+
+  profilePage() {
+    this.router.navigate(['profile']);
   }
 
   selectCourse = course => {
@@ -44,7 +51,7 @@ export class SectionsComponent implements OnInit {
         .findSectionsForCourse(this.selectedCourse.id);
     })
       .then(sections => this.sections = sections);
-  }
+  };
 
   addSection = section => {
     if (section.title === undefined) {
