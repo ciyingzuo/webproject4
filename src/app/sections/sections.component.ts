@@ -15,7 +15,7 @@ export class SectionsComponent implements OnInit {
     title: '',
     id: -1
   };
-  section = {};
+  section = {title: ''};
   seat;
   title;
 
