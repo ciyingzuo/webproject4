@@ -1,13 +1,21 @@
-<h2>Welcome {{currentUser.username}}</h2>
-<div>Your UID is {{currentUser._id}}</div>
+<h2>Welcome {{currentUser.firstName}}</h2>
+<div>Your username is {{currentUser.username}}</div>
 <div>Email Address:
   <input [(ngModel)]="currentUser.emailAddress"
          class="form-control"/>
   Phone Number:
   <input [(ngModel)]="currentUser.phoneNumber"
          class="form-control"/>
-
-  <button (click)="updateUser(currentUser.emailAddress, currentUser.phoneNumber)" class="btn btn-success">Update</button>
+  New Password:
+  <input [(ngModel)]="currentUser.password"
+         class="form-control"/>
+  First Name:
+  <input [(ngModel)]="currentUser.firstName"
+         class="form-control"/>
+  Last Name:
+  <input [(ngModel)]="currentUser.lastName"
+         class="form-control"/>
+  <button (click)="updateUser(currentUser.emailAddress, currentUser.phoneNumber, currentUser.password, currentUser.firstName, currentUser.lastName)" class="btn btn-success">Update</button>
   <button (click)="coursePage()" class="btn btn-primary">Course</button>
   <button (click)="logout()" class="btn btn-danger">Log out</button>
   <a (click)="adminPage()" [ngClass]="{'disabled': currentUser.username != 'admin'}"
