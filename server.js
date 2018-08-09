@@ -6,13 +6,13 @@ const app = express();
 
 // Serve only the static files form the dist directory
 
-app.use(express.static('./dist/simple-blog-app-angular'));
+app.use(express.static('./dist/webproject4'));
 
 
 
 app.get('/*', function (req, res) {
 
-  res.sendFile(path.join('./dist/simple-blog-app-angular/index.html'));
+  res.sendFile(path.join('./dist/webproject4/index.html'));
 
 });
 
