@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 const LOCAL = 'http://localhost:3000/api/';
 const HEROKU = 'https://ciyingzuo-webdev-hw4server.herokuapp.com/api/';
-const SECTION_URL = LOCAL;
+const SECTION_URL = HEROKU;
 
 @Injectable()
 export class SectionServiceClient {
