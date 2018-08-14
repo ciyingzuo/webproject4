@@ -7,7 +7,7 @@
     <div *ngSwitchCase="'admin'">
       <div [ngSwitch]="filter">
         <div *ngSwitchCase="''">
-          {{submit.user.username}} - {{submit.date}} - {{filter}}
+          {{submit.user.username}} - {{submit.date}} - {{submit.quiz.title}}
           <button class="float-right btn btn-primary"
                   (click)="viewAnswer(submit._id)">
             View Submission
@@ -16,7 +16,7 @@
 
         <div *ngSwitchDefault>
           <div *ngSwitchCase="submit.user.username">
-            {{submit.user.username}} - {{submit.date}}
+            {{submit.user.username}} - {{submit.date}} - {{submit.quiz.title}}
             <button class="float-right btn btn-primary"
                     (click)="viewAnswer(submit._id)">
               View Submission
@@ -31,7 +31,7 @@
       <div [ngSwitch]="submit.user.username">
 
         <div *ngSwitchCase="username">
-          {{submit.user.username}} - {{submit.date}}
+          {{submit.user.username}} - {{submit.date}} - {{submit.quiz.title}}
           <button class="float-right btn btn-primary"
                   (click)="viewAnswer(submit._id)">
             View Submission
