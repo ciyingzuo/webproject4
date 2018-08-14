@@ -1,0 +1,35 @@
+<h2>Submission</h2>
+
+<ul class="list-group">
+  <li *ngFor="let question of quiz.question; index as i" class="list-group-item">
+    <div [ngSwitch]="question.type">
+      <div *ngSwitchCase="'ESSAY'">
+        <h4>Essay Question: {{question.text}}</h4>
+        <div>Student Answer: {{submission.answer[i]}}</div>
+      </div>
+      <div *ngSwitchCase="'TRUEFALSE'">
+        <h4>True or False Question: {{question.text}}</h4>
+        <div>Student Answer: {{submission.answer[i]}}</div>
+      </div>
+
+      <div *ngSwitchCase="'FILLBLANK'">
+        <h4>Fill Blank Question: <span *ngFor="let text of question.text; index as i" [ngSwitch]="text.indexOf('*')">
+         <span *ngSwitchCase="-1">{{text}}</span>
+          <span *ngSwitchCase="0"><input/></span>
+          </span></h4>
+        <div>Student Answer: {{submission.answer[i]}}</div>
+      </div>
+
+      <div *ngSwitchCase="'CHOICE'">
+        <h4>Multiple Choice Question: {{question.text[0]}}</h4>
+          <li *ngFor="let choice of question.text.splice(1)" class="list-group-item">
+            <div>{{choice}}</div>
+          </li>
+  <div>
+    Student Answer: {{submission.answer[i]}}
+  </div>
+  </div>
+  <div *ngSwitchDefault>{{question.type}}</div>
+  </div>
+  </li>
+</ul>

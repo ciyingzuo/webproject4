@@ -1,0 +1,20 @@
+<h2>Quiz</h2>
+<button class="float-right btn btn-primary"
+        (click)="submissionPage()">
+  All Submissions
+</button>
+<ul class="list-group">
+
+  <li *ngFor="let quiz of quizzes"
+      class="list-group-item">
+    {{quiz.title}}
+    <button class="float-right btn btn-primary"
+       (click)="takeQuiz(quiz._id)">
+      Take Quiz
+    </button>
+    <button class="float-right btn btn-primary"
+       (click)="viewSubmission(quiz._id)">
+      View Submissions
+    </button>
+  </li>
+</ul>

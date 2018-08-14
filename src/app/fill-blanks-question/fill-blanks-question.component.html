@@ -1,0 +1,15 @@
+<!--<span [ngSwitch]="blank.indexOf('*')" *ngFor="let blank of question.blanks">-->
+  <!--<span *ngSwitchCase="-1">{{blank}}</span>-->
+  <!--<span *ngSwitchCase="0">-->
+    <!--<input [(ngModel)]="question.fillBlanksAnswers[blank.split('=')[0].replace('*','')]"-->
+           <!--placeholder="{{blank.split('=')[0].replace('*','')}}"-->
+           <!--style="border-color:black">-->
+  <!--</span>-->
+<!--</span>-->
+<h4>{{question.title}}</h4>
+<span *ngFor="let text of question.text; index as i" [ngSwitch]="text.indexOf('*')">
+  <span *ngSwitchCase="-1">{{text}}</span>
+  <span *ngSwitchCase="0"><input [(ngModel)]="answer[this.index]"/></span>
+</span>
+
+<!--<p (ngModel)="answer[this.index]">{{rawAnswer.join('')}}</p>-->

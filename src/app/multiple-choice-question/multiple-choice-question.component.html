@@ -1,0 +1,12 @@
+<ul class="list-group">
+  <h4>{{question.title}}</h4>
+  <div>{{question.text}}</div>
+  <li *ngFor="let choice of option"
+      class="list-group-item">
+    <label>
+      <input (click)="selected(choice)" name="{{question._id}}"
+             type="radio">
+      {{choice}}
+    </label>
+  </li>
+</ul>

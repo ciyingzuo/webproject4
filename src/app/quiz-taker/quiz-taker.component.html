@@ -1,0 +1,47 @@
+<h2>
+  {{quiz.title}}
+  <button class="btn btn-primary float-right"
+          (click)="submitQuiz(quiz)">
+    Submit
+  </button>
+  <button class="btn btn-danger float-right"
+          (click)="cancle(quiz)">
+    Cancle
+  </button>
+</h2>
+
+
+<ul class="list-group">
+  <li *ngFor="let question of quiz.question; index as i" class="list-group-item">
+    <div [ngSwitch]="question.type">
+      <app-essay-question
+        [index]="i"
+        [answer]="this.answer"
+        [question]="question"
+        *ngSwitchCase="'ESSAY'">
+      </app-essay-question>
+
+      <app-true-false-question
+        [index]="i"
+        [answer]="this.answer"
+        [question]="question"
+        *ngSwitchCase="'TRUEFALSE'">
+      </app-true-false-question>
+
+      <app-fill-blanks-question
+        [index]="i"
+        [answer]="this.answer"
+        [question]="question"
+        *ngSwitchCase="'FILLBLANK'">
+      </app-fill-blanks-question>
+
+      <app-multiple-choice-question
+        [index]="i"
+        [answer]="this.answer"
+        [question]="question"
+        *ngSwitchCase="'CHOICE'">
+      </app-multiple-choice-question>
+      <div *ngSwitchDefault>{{question.type}}</div>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,92 @@
+<h2>Submission</h2>
+<input placeholder="student name" [(ngModel)]="filter"/>
+<ul class="list-group">
+
+  <li *ngFor="let submit of submission"
+      class="list-group-item" [ngSwitch]="isAdmin">
+    <div *ngSwitchCase="'admin'">
+      <div [ngSwitch]="filter">
+        <div *ngSwitchCase="''">
+          {{submit.user.username}} - {{submit.date}} - {{filter}}
+          <button class="float-right btn btn-primary"
+                  (click)="viewAnswer(submit._id)">
+            View Submission
+          </button>
+        </div>
+
+        <div *ngSwitchDefault>
+          <div *ngSwitchCase="submit.user.username">
+            {{submit.user.username}} - {{submit.date}}
+            <button class="float-right btn btn-primary"
+                    (click)="viewAnswer(submit._id)">
+              View Submission
+            </button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div *ngSwitchCase="'nonAdmin'">
+      <div [ngSwitch]="submit.user.username">
+
+        <div *ngSwitchCase="username">
+          {{submit.user.username}} - {{submit.date}}
+          <button class="float-right btn btn-primary"
+                  (click)="viewAnswer(submit._id)">
+            View Submission
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+    <!--<div *ngSwitchCase="filter">-->
+    <!--{{submit.user.username}} - {{submit.date}}-->
+    <!--<button class="float-right btn btn-primary"-->
+    <!--(click)="viewAnswer(submit._id)">-->
+    <!--View Submission-->
+    <!--</button>-->
+    <!--</div>-->
+  </li>
+
+</ul>
+
+
+<!--<h2>Submission</h2>-->
+<!--<input placeholder="student name" [(ngModel)]="filter"/>-->
+<!--<ul class="list-group">-->
+<!--<li *ngFor="let submit of submission"-->
+<!--class="list-group-item" [ngSwitch]="submit.user.username">-->
+<!--<div *ngSwitchCase="filter">-->
+<!--{{submit.user.username}} - {{submit.date}}-->
+<!--<button class="float-right btn btn-primary"-->
+<!--(click)="viewAnswer(submit._id)">-->
+<!--View Submission-->
+<!--</button>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+
+
+<!--<div [ngSwitch]="filterActive">-->
+<!--<div *ngSwitchCase="'yes'">-->
+<!--<div [ngSwitch]="submit.user.username">-->
+<!--<div *ngSwitchCase="filter">-->
+<!--{{submit.user.username}} - {{submit.date}}-->
+<!--<button class="float-right btn btn-primary"-->
+<!--(click)="viewAnswer(submit._id)">-->
+<!--View Submission-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div *ngSwitchCase="'no'">-->
+
+<!--{{submit.user.username}} - {{submit.date}}-->
+<!--<button class="float-right btn btn-primary"-->
+<!--(click)="viewAnswer(submit._id)">-->
+<!--View Submission-->
+<!--</button>-->
+<!--</div>-->
+<!--</div>-->
