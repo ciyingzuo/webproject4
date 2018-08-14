@@ -2,11 +2,11 @@
 <input placeholder="student name" [(ngModel)]="filter"/>
 <ul class="list-group">
 
-  <li *ngFor="let submit of submission"
-      class="list-group-item" [ngSwitch]="isAdmin">
+  <div *ngFor="let submit of submission"
+       [ngSwitch]="isAdmin">
     <div *ngSwitchCase="'admin'">
       <div [ngSwitch]="filter">
-        <div *ngSwitchCase="''">
+        <div *ngSwitchCase="''" class="list-group-item">
           {{submit.user.username}} - {{submit.date}} - {{submit.quiz.title}}
           <button class="float-right btn btn-primary"
                   (click)="viewAnswer(submit._id)">
@@ -15,7 +15,7 @@
         </div>
 
         <div *ngSwitchDefault>
-          <div *ngSwitchCase="submit.user.username">
+          <div *ngSwitchCase="submit.user.username" class="list-group-item">
             {{submit.user.username}} - {{submit.date}} - {{submit.quiz.title}}
             <button class="float-right btn btn-primary"
                     (click)="viewAnswer(submit._id)">
@@ -24,13 +24,11 @@
           </div>
         </div>
       </div>
-
-
     </div>
     <div *ngSwitchCase="'nonAdmin'">
       <div [ngSwitch]="submit.user.username">
 
-        <div *ngSwitchCase="username">
+        <div *ngSwitchCase="username" class="list-group-item">
           {{submit.user.username}} - {{submit.date}} - {{submit.quiz.title}}
           <button class="float-right btn btn-primary"
                   (click)="viewAnswer(submit._id)">
@@ -48,7 +46,7 @@
     <!--View Submission-->
     <!--</button>-->
     <!--</div>-->
-  </li>
+  </div>
 
 </ul>
 
