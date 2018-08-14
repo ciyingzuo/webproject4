@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 
 const LOCAL = 'http://localhost:3000/';
 const HEROKU = 'https://ciyingzuo-webdev-hw4server.herokuapp.com/';
-const USER_URL = HEROKU;
+const USER_URL = LOCAL;
 
 @Injectable()
 export class UserServiceClient {

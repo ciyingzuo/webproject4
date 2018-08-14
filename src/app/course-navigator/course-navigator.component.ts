@@ -12,10 +12,10 @@ import {SectionServiceClient} from '../services/section.service.client';
 export class CourseNavigatorComponent implements OnInit {
 
   courses = [];
-  currentCourse = {module: []};
-  currentModule = {lesson: []};
+  currentCourse = {};
+  currentModule = {};
   currentLesson = {topic: []};
-  topic = {widget: []};
+  topic = {};
   sections = [];
   crs = [];
 
@@ -31,15 +31,15 @@ export class CourseNavigatorComponent implements OnInit {
       return;
     }
     this.currentCourse = course;
-    this.currentModule = {lesson: []};
+    this.currentModule = {};
     this.currentLesson = {topic: []};
-    this.topic = {widget: []};
+    this.topic = {};
   }
 
   selectModule(module) {
     this.currentModule = module;
     this.currentLesson = {topic: []};
-    this.topic = {widget: []};
+    this.topic = {};
   }
 
   selectLesson(lesson) {
@@ -47,7 +47,7 @@ export class CourseNavigatorComponent implements OnInit {
     if (this.currentLesson.topic.length > 1) {
       this.topic = this.currentLesson.topic[1];
     } else {
-      this.topic = {widget: []};
+      this.topic = {};
     }
 
   }
