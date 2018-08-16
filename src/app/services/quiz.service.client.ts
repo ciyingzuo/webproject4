@@ -33,7 +33,7 @@ export class QuizServiceClient {
       .then(response => response.json());
 
   findAllSubmission = () =>
-    fetch(QUIZ_URL + 'allSubmission')
+    fetch(QUIZ_URL + 'quiz/allSubmission')
       .then(response => response.json());
 
 }
