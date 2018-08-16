@@ -23,7 +23,7 @@ export class QuizListComponent implements OnInit {
     this.router.navigate(['quiz/' + quizId + '/submissions']);
   }
 
-  submissionPage(quizId) {
+  submissionPage() {
     this.router.navigate(['quiz/0/submissions']);
   }
 

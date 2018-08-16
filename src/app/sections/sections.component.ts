@@ -15,7 +15,7 @@ export class SectionsComponent implements OnInit {
     title: '',
     id: -1
   };
-  section = {};
+  section = {title: ''};
   seat;
   title;
 
@@ -28,7 +28,7 @@ export class SectionsComponent implements OnInit {
     this.sectionService
       .findSectionsForCourse(course.id)
       .then(sections => this.sections = sections);
-  };
+  }
 
   updateSection = (section) => {
     this.sectionService.updateSection(section).then(newSection => {
@@ -36,7 +36,7 @@ export class SectionsComponent implements OnInit {
         .findSectionsForCourse(this.selectedCourse.id);
     })
       .then(sections => this.sections = sections);
-  };
+  }
 
   deleteSection = section => {
     this.sectionService.deleteSection(section).then(newSection => {
@@ -60,7 +60,7 @@ export class SectionsComponent implements OnInit {
       })
       .then(sections => this.sections = sections);
     section.title = undefined;
-  };
+  }
 
   ngOnInit() {
     this.courseService.findAllCourses()
