@@ -1,9 +1,0 @@
-<h2>Welcome {{currentUser.username}}</h2>
-
-<h3>Enrollments</h3>
-<ul class="list-group">
-  <li class="list-group-item" *ngFor="let section of currentUser.sections">
-    {{section.title}} (seats: 23)
-    <button class="float-right">Drop</button>
-  </li>
-</ul>
